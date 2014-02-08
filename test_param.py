@@ -1,12 +1,16 @@
 from function import SciParam, SciInput, SciOutput
 
-param = SciParam('String', 's')
+description = "This is a parameter."
+param = SciParam('String', 's', description)
 
 def test_param_name():
 	assert param.name == 'String'
 
 def test_param_var():
 	assert param.var == 's'
+
+def test_param_desc():
+	assert param.description == "This is a parameter."
 
 def test___repr__():
 	assert repr(param) == "SciParam('String', 's')"
