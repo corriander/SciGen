@@ -1,4 +1,4 @@
-from function import SciParam
+from function import SciParam, SciInput, SciOutput
 
 param = SciParam('String', 's')
 
@@ -13,3 +13,31 @@ def test___repr__():
 
 def test___str__():
 	assert str(param) == 'Parameter: String, s'
+
+iparam = SciInput('Boolean', 'b')
+
+def test_iparam_name():
+	assert iparam.name == 'Boolean'
+
+def test_iparam_var():
+	assert iparam.var == 'b'
+
+def test_i__repr__():
+	assert repr(iparam) == "SciInput('Boolean', 'b')"
+
+def test_i__str__():
+	assert str(iparam) == 'Input: Boolean, b'
+
+oparam = SciOutput('Number', 'n')
+
+def test_oparam_name():
+	assert oparam.name == 'Number'
+
+def test_oparam_var():
+	assert oparam.var == 'n'
+
+def test_o__repr__():
+	assert repr(oparam) == "SciOutput('Number', 'n')"
+
+def test_o__str__():
+	assert str(oparam) == 'Output: Number, n'
