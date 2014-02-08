@@ -28,11 +28,12 @@ class SciMacro(object):
 		self._name = name
 
 	def __repr__(self):
-		return "SciMacro(%s)" % self.name
+		return "SciMacro('%s')" % self.name
 
 	def __str__(self):
-		lines = []
-		lines.append("SciMacro Object: %s" % self.name)
+		string = []
+		string.append("SciMacro Object: %s" % self.name)
+		return "\n".join(string)
 	
 	@property
 	def name(self):
