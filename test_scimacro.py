@@ -13,3 +13,11 @@ def test___str__():
 
 def test___repr__():
 	assert repr(test_macro) == "SciMacro('test_macro')"
+
+def test_credit():
+	assert test_macro.credit == "Copyright (C) 2013 A. Person"
+
+def test_license():
+	test_str = "This is a software license\n\n"
+	test_str = test_str + "Do with it what you like."
+	assert test_macro.license == test_str
