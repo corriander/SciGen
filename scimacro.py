@@ -24,8 +24,10 @@ class SciMacro(object):
 	  - Functions
 
 	"""
-	def __init__(self, name):
+	def __init__(self, name, credit=None, license=None):
 		self._name = name
+		self._credit = credit
+		self._license = license
 
 	def __repr__(self):
 		return "SciMacro('%s')" % self.name
@@ -44,3 +46,12 @@ class SciMacro(object):
 		"""
 		return self._name
 
+	@property
+	def credit(self):
+		"""Credit string (frontmatter)."""
+		return self._credit
+
+	@property
+	def license(self):
+		"""License string (frontmatter)."""
+		return self._license
