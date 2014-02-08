@@ -12,3 +12,26 @@
 #                                                                      
 #You should have received a copy of the GNU General Public License     
 #along with this program.  If not, see [http://www.gnu.org/licenses/]
+
+class SciMacro(object):
+	"""Scilab Macro encapsulation.
+
+	Encapsulates information sufficient for a top-level description of
+	a single-file Scilab macro skeleton including:
+
+	  - Licence
+	  - Credits
+	  - Functions
+
+	"""
+	def __init__(self, name):
+		self._name = name
+	
+	@property
+	def name(self):
+		"""Name of Scilab macro.
+
+		This is also the default filename.
+
+		"""
+		return self._name
