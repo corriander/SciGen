@@ -24,9 +24,22 @@ class SciFun(object):
 	  - Simple documentation block.
 	  - List of parameters
 	"""
-	def __init__(self, name, credit=None):
+	def __init__(self,
+ 			name,
+ 			parameters,
+ 			summary,
+ 			description=None,
+ 			credit=None,
+			body=None
+			):
 		self._name = name
+		self._parameters = parameters
+		self._summary = summary
+		self._description = description
 		self._credit = credit
+		self._body = body
+		# generate declaration
+		self.declaration = self._generate_declaration()
 
 	def __repr__(self):
 		return "SciFun('%s')" % self.name
@@ -35,16 +48,68 @@ class SciFun(object):
 		string = []
 		string.append("SciFun Object: %s" % self.name)
 		return "\n".join(string)
+
+	def _generate_declaration(self):
+		"""Generate function declaration syntax."""
+		components = ["function "]
+		pstat = self.parameters.stat()
+		components.append(str(pstat['SciOutput']).replace("'",""))
+		components.append(" = ")
+		components.append(self.name)
+		components.append(str(tuple(pstat['SciInput'])).replace("'",""))
+		return "".join(components)
 	
 	@property
 	def name(self):
-		"""Name of Scilab function."""
+		"""Name of Scilab function.
+		
+		This is a mandatory attribute.
+		
+		"""
+		# At some point, some sort of (configurable) naming rules
+		# could be enforced.
 		return self._name
+
+	@property
+	def parameters(self):
+		"""Parameter set.
+		
+		This is a mandatory attribute and should be SciParamSet, even
+		if it's empty.
+		
+		"""
+		return self._parameters
+
+
+	@property
+	def summary(self):
+		"""Summary of function.
+		
+		This is a mandatory component of the comment block.
+		
+		"""
+		return self._summary
+	
+	@property
+	def description(self):
+		"""Detailed description of function."""
+		return self._description
+
+	@property
+	def usage(self):
+		"""Usage documentation."""
+		# This is obviously currently dumb.
+		return self.declaration.lstrip('function ')
 
 	@property
 	def credit(self):
 		"""Credit string (frontmatter)."""
 		return self._credit
+
+	@property
+	def body(self):
+		"""Function body."""
+		return self._body
 
 class SciParamSet(list):
 	"""Set of Scilab function parameters.
@@ -112,6 +177,9 @@ class SciParam(object):
 
 	  - Variable name
 	  - Variable
+	  - Description
+	  - (Scilab) Type
+	  - Size
 	
 	"""
 	def __init__(self, name, var, 
