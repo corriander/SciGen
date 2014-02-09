@@ -9,20 +9,24 @@ def test_init_empty():
 	paramset = SciParamSet()
 	assert not paramset # Pythonic, not explicit. Test boolean value.
 
-def test_init_one_parameter_name():
+class TestOneParam:
+	
 	paramset = SciParamSet(param)
-	assert paramset[0].name == 'Parameter'
 
-def test_init_one_parameter_var():
-	paramset = SciParamSet(param)
-	assert paramset[0].var == 'p'
+	def test_name(self):
+		assert self.paramset[0].name == 'Parameter'
 
-def test_init_multi_params():
+	def test_var(self):
+		assert self.paramset[0].var == 'p'
+
+class TestMultiParam:
+
 	paramset = SciParamSet(iparam_1, iparam_2, oparam)
-	assert paramset[0].name == 'Dimension 1'
-	assert paramset[0].var == 'x'
-	assert paramset[2].name == 'Length'
-	assert paramset[2].var == 'l'
 
+	def test_names(self):
+		assert self.paramset[0].name == 'Dimension 1'
+		assert self.paramset[2].name == 'Length'
 
-
+	def test_vars(self):
+		assert self.paramset[0].var == 'x'
+		assert self.paramset[2].var == 'l'
