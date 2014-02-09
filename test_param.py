@@ -1,60 +1,74 @@
 from function import SciParam, SciInput, SciOutput
 
-description = "This is a parameter."
-scitype = "string"
-size = (1, 1)
-param = SciParam('String', 's', description, scitype, size)
+class TestParam:
+	
+	param = SciParam(
+			'String',
+			's',
+			'This is a parameter.',
+			'string',
+			(1, 1)
+			)
 
-def test_param_name():
-	assert param.name == 'String'
+	partial_param = SciParam(
+			'String',
+			's'
+			)
 
-def test_param_var():
-	assert param.var == 's'
+	def test_param_name(self):
+		assert self.param.name == 'String'
 
-def test_param_desc():
-	assert param.description == "This is a parameter."
+	def test_param_var(self):
+		assert self.param.var == 's'
 
-def test_param_scitype():
-	assert param.scitype == "string"
+	def test_param_desc(self):
+		assert self.param.description == "This is a parameter."
 
-def test_param_size():
-	assert param.size == (1, 1)
+	def test_param_scitype(self):
+		assert self.param.scitype == "string"
 
-def test___repr__():
-	assert repr(param) == "SciParam('String', 's', kwargs)"
+	def test_param_size(self):
+		assert self.param.size == (1, 1)
 
-def test___str__():
-	string = ["s - String"]
-	string.append("Description : This is a parameter.")
-	string.append("Type        : string")
-	string.append("Size        : [1, 1]")
-	string = "\n".join(string)
-	assert str(param) == string
+	def test___repr__(self):
+		assert repr(self.param) == "SciParam('String', 's', kwargs)"
 
-iparam = SciInput('Boolean', 'b')
+	def test___str__(self):
+		string = ["s - String"]
+		string.append("Description : This is a parameter.")
+		string.append("Type        : string")
+		string.append("Size        : [1, 1]")
+		string = "\n".join(string)
+		assert str(self.param) == string
 
-def test_iparam_name():
-	assert iparam.name == 'Boolean'
+class TestInput:
 
-def test_iparam_var():
-	assert iparam.var == 'b'
+	param = SciInput('Boolean', 'b')
 
-def test_i__repr__():
-	assert repr(iparam) == "SciInput('Boolean', 'b', kwargs)"
+	def test_name(self):
+		assert self.param.name == 'Boolean'
 
-def test_i__str__():
-	assert str(iparam) == 'Input: Boolean, b'
+	def test_var(self):
+		assert self.param.var == 'b'
 
-oparam = SciOutput('Number', 'n')
+	def test__repr__(self):
+		assert repr(self.param) == "SciInput('Boolean', 'b', kwargs)"
 
-def test_oparam_name():
-	assert oparam.name == 'Number'
+	def test__str__(self):
+		assert str(self.param) == 'Input: Boolean, b'
 
-def test_oparam_var():
-	assert oparam.var == 'n'
+class TestOutput:
 
-def test_o__repr__():
-	assert repr(oparam) == "SciOutput('Number', 'n', kwargs)"
+	param = SciOutput('Number', 'n')
 
-def test_o__str__():
-	assert str(oparam) == 'Output: Number, n'
+	def test_name(self):
+		assert self.param.name == 'Number'
+
+	def test_var(self):
+		assert self.param.var == 'n'
+
+	def test__repr__(self):
+		assert repr(self.param) == "SciOutput('Number', 'n', kwargs)"
+
+	def test__str__(self):
+		assert str(self.param) == 'Output: Number, n'
