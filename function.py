@@ -75,28 +75,27 @@ class SciParamSet(list):
 			string.append('Modified Parameters')                           
 			string.append('-------------------')                           
 			string.append('These are returned to previous scope.')         
-			string.append('')
-			for p in stat['SciParam']:
-				string.append(str(self[p]))
-				string.append('')
-			string.append('')
+			self._add_text(string, stat['SciParam'])
 		if stat['SciOutput']:
 			string.append('Outputs')
 			string.append('-------')
-			string.append('')
-			for p in stat['SciOutput']:
-				string.append(str(self[p]))
-				string.append('')
-			string.append('')
+			self._add_text(string, stat['SciOutput'])
 		if stat['SciInput']:
 			string.append('Inputs')
 			string.append('------')
-			string.append('')
-			for p in stat['SciInput']:
-				string.append(str(self[p]))
-				string.append('')
-			string.append('')
+			self._add_text(string, stat['SciInput'])
 		return "\n".join(string)
+
+	def _add_text(self, lsof_str, keys):
+		# Used by __str__ to take some repetition out. Takes a list of
+		# keys and adds the string representation to the lsof_str
+		# parameter.
+		lsof_str.append('')
+		for o in keys:
+			lsof_str.append(str(self[o]))
+			lsof_str.append('')
+		lsof_str.append('')
+		return lsof_str
 	
 	def stat(self):
 		"""Return variables in different classes of parameter."""
