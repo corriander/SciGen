@@ -12,6 +12,9 @@ class TestEmpty:
 	def test_init_empty(self):
 		assert not self.paramset # Pythonic, not explicit. Test boolean value.
 	
+	def test___str__(self):
+		assert str(self.paramset) == ''
+
 class TestOneParam:
 	
 	paramset = SciParamSet(param)
@@ -24,6 +27,16 @@ class TestOneParam:
 	
 	def test___getitem__(self):
 		assert self.paramset['p'] == param
+
+	def test___str__(self):
+		string = []
+		string.append('Modified Parameters')
+		string.append('-------------------')
+		string.append('These are returned to previous scope.')
+		string.append('')
+		string.append(str(param))
+		string.append('\n')
+		assert str(self.paramset) == "\n".join(string)
 
 class TestMultiParam:
 
@@ -42,3 +55,19 @@ class TestMultiParam:
 				'SciInput' : ['x', 'y'],
 				'SciOutput' : ['l']
 				}
+	
+	def test___str__(self):
+		string = []
+		string.append('Outputs')
+		string.append('-------')
+		string.append('')
+		string.append(str(oparam))
+		string.append('\n')
+		string.append('Inputs')
+		string.append('------')
+		string.append(str(iparam_1))
+		string.append('')
+		string.append(str(iparam_2))
+		string.append('\n')
+		assert str(self.paramset) == "\n".join(string)
+
