@@ -13,7 +13,7 @@
 #You should have received a copy of the GNU General Public License     
 #along with this program.  If not, see [http://www.gnu.org/licenses/]
 
-class SciMacro(object):
+class SciMacro(list):
 	"""Scilab Macro encapsulation.
 
 	Encapsulates information sufficient for a top-level description of
@@ -23,11 +23,17 @@ class SciMacro(object):
 	  - Credits
 	  - Functions
 
+	Inherits from the list class so it is itself a list of constituent
+	functions.
+
 	"""
 	def __init__(self, name, credit=None, license=None):
 		self._name = name
 		self._credit = credit
 		self._license = license
+		self.directory = '/tmp'
+		self.filename = self.name + os.path.extsep + 'sci'
+		self.filepath = os.path.join(self.directory, self.filename)
 
 	def __repr__(self):
 		return "SciMacro('%s')" % self.name
@@ -36,6 +42,17 @@ class SciMacro(object):
 		string = []
 		string.append("SciMacro Object: %s" % self.name)
 		return "\n".join(string)
+
+	def write(self):
+		"""Write macro to file."""
+		with open(self.filepath, 'w') as f:
+			f.write(self.credit)
+			f.write('\n')
+			f.write(self.license)
+			f.write('\n')
+			for func in self:
+				f.write(str(func))
+				f.write('\n\n\n')
 	
 	@property
 	def name(self):
