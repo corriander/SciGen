@@ -61,7 +61,7 @@ class SciParam(object):
 		self._scitype = scitype
 	
 	def __repr__(self):
-		return "%s('%s', '%s')" % (
+		return "%s('%s', '%s', kwargs)" % (
 				self.__class__.__name__,
 				self.name,
 				self.var
