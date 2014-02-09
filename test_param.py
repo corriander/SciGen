@@ -16,7 +16,10 @@ def test___repr__():
 	assert repr(param) == "SciParam('String', 's')"
 
 def test___str__():
-	assert str(param) == 'Parameter: String, s'
+	string = ["s - String"]
+	string.append("Description : This is a parameter.")
+	string = "\n".join(string)
+	assert str(param) == string
 
 iparam = SciInput('Boolean', 'b')
 

@@ -67,7 +67,9 @@ class SciParam(object):
 				)
 
 	def __str__(self):
-		return "Parameter: %s, %s" % (self.name , self.var)
+		text = ["%s - %s" % (self.var, self.name)]
+		text.append("Description : %s" % self.description)
+		return "\n".join(text)
 
 	@property 
 	def name(self):
