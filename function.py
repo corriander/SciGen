@@ -44,6 +44,18 @@ class SciFun(object):
 		"""Credit string (frontmatter)."""
 		return self._credit
 
+class SciParamSet(list):
+	"""Set of Scilab function parameters.
+	
+	Paradoxically, Scilab functions don't actually *need* parameters.
+	Although this might be considered an abuse of the language there
+	are valid reasons to use parameterless functions (especially when
+	trying to emulate OOP principles). It therefore makes sense for an
+	empty set of parameters to be possible."""
+	def __init__(self, *args):
+		for item in args:
+			self.append(item)
+
 class SciParam(object):
 	"""Scilab Parameter encapsulation.
 
