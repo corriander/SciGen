@@ -30,3 +30,9 @@ class TestMultiParam:
 	def test_vars(self):
 		assert self.paramset[0].var == 'x'
 		assert self.paramset[2].var == 'l'
+
+	def test_composition(self):
+		assert self.paramset.stat() == {
+				'SciInput' : ['x', 'y'],
+				'SciOutput' : ['l']
+				}

@@ -13,6 +13,8 @@
 #You should have received a copy of the GNU General Public License     
 #along with this program.  If not, see [http://www.gnu.org/licenses/]
 
+from collections import defaultdict
+
 class SciFun(object):
 	"""Scilab function encapsulation.
 
@@ -52,9 +54,17 @@ class SciParamSet(list):
 	are valid reasons to use parameterless functions (especially when
 	trying to emulate OOP principles). It therefore makes sense for an
 	empty set of parameters to be possible."""
+
 	def __init__(self, *args):
 		for item in args:
 			self.append(item)
+
+	def stat(self):
+		"""Return variables in different classes of parameter."""
+		dd = defaultdict(list)
+		for item in self:
+			dd[item.__class__.__name__].append(item.var)
+		return dict(dd)
 
 class SciParam(object):
 	"""Scilab Parameter encapsulation.
