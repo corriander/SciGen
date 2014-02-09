@@ -67,7 +67,7 @@ class SciParamSet(list):
 			if item.var is key:
 				return item
 		raise KeyError, "Variable '%s' not in set." % key
-	
+
 	def stat(self):
 		"""Return variables in different classes of parameter."""
 		dd = defaultdict(list)
@@ -105,9 +105,12 @@ class SciParam(object):
 
 	def __str__(self):
 		text = ["%s - %s" % (self.var, self.name)]
-		text.append("Description : %s" % self.description)
-		text.append("Type        : %s" % self.scitype)
-		text.append("Size        : %s" % list(self.size))
+		if self.description:
+			text.append("Description : %s" % self.description)
+		if self.scitype:
+			text.append("Type        : %s" % self.scitype)
+		if self.size:
+			text.append("Size        : %s" % list(self.size))
 		return "\n".join(text)
 
 	@property 
