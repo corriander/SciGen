@@ -68,12 +68,42 @@ class SciParamSet(list):
 				return item
 		raise KeyError, "Variable '%s' not in set." % key
 
+	def __str__(self):
+		stat = self.stat()
+		string = []
+		if stat['SciParam']:
+			string.append('Modified Parameters')                           
+			string.append('-------------------')                           
+			string.append('These are returned to previous scope.')         
+			string.append('')
+			for p in stat['SciParam']:
+				string.append(str(self[p]))
+				string.append('')
+			string.append('')
+		if stat['SciOutput']:
+			string.append('Outputs')
+			string.append('-------')
+			string.append('')
+			for p in stat['SciOutput']:
+				string.append(str(self[p]))
+				string.append('')
+			string.append('')
+		if stat['SciInput']:
+			string.append('Inputs')
+			string.append('------')
+			string.append('')
+			for p in stat['SciInput']:
+				string.append(str(self[p]))
+				string.append('')
+			string.append('')
+		return "\n".join(string)
+	
 	def stat(self):
 		"""Return variables in different classes of parameter."""
 		dd = defaultdict(list)
 		for item in self:
 			dd[item.__class__.__name__].append(item.var)
-		return dict(dd)
+		return dd
 
 class SciParam(object):
 	"""Scilab Parameter encapsulation.
