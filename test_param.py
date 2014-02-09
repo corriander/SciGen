@@ -22,6 +22,7 @@ def test___repr__():
 def test___str__():
 	string = ["s - String"]
 	string.append("Description : This is a parameter.")
+	string.append("Type        : string")
 	string = "\n".join(string)
 	assert str(param) == string
 
