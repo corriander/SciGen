@@ -54,11 +54,16 @@ class SciParam(object):
 	  - Variable
 	
 	"""
-	def __init__(self, name, var, description=None, scitype=None):
+	def __init__(self, name, var, 
+			description=None,
+			scitype=None,
+			size=None
+			):
 		self._name = name
 		self._var = var
 		self._description = description
 		self._scitype = scitype
+		self._size = size
 	
 	def __repr__(self):
 		return "%s('%s', '%s', kwargs)" % (
@@ -71,6 +76,7 @@ class SciParam(object):
 		text = ["%s - %s" % (self.var, self.name)]
 		text.append("Description : %s" % self.description)
 		text.append("Type        : %s" % self.scitype)
+		text.append("Size        : %s" % list(self.size))
 		return "\n".join(text)
 
 	@property 
@@ -92,6 +98,11 @@ class SciParam(object):
 	def scitype(self):
 		"""Scilab data type as reported by Scilab's `typeof()`"""
 		return self._scitype
+
+	@property
+	def size(self):
+		"""Size of variable as reported by Scilab's `size()`"""
+		return self._size
 
 class SciInput(SciParam):
 	"""Scilab function input parameter encapsulation."""

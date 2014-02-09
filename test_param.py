@@ -2,7 +2,8 @@ from function import SciParam, SciInput, SciOutput
 
 description = "This is a parameter."
 scitype = "string"
-param = SciParam('String', 's', description, scitype)
+size = (1, 1)
+param = SciParam('String', 's', description, scitype, size)
 
 def test_param_name():
 	assert param.name == 'String'
@@ -16,6 +17,9 @@ def test_param_desc():
 def test_param_scitype():
 	assert param.scitype == "string"
 
+def test_param_size():
+	assert param.size == (1, 1)
+
 def test___repr__():
 	assert repr(param) == "SciParam('String', 's', kwargs)"
 
@@ -23,6 +27,7 @@ def test___str__():
 	string = ["s - String"]
 	string.append("Description : This is a parameter.")
 	string.append("Type        : string")
+	string.append("Size        : [1, 1]")
 	string = "\n".join(string)
 	assert str(param) == string
 
