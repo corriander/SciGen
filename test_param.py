@@ -58,7 +58,7 @@ class TestInput:
 		assert repr(self.param) == "SciInput('Boolean', 'b', kwargs)"
 
 	def test__str__(self):
-		assert str(self.param) == 'Input: Boolean, b'
+		assert str(self.param) == 'b - Boolean'
 
 class TestOutput:
 
@@ -74,4 +74,4 @@ class TestOutput:
 		assert repr(self.param) == "SciOutput('Number', 'n', kwargs)"
 
 	def test__str__(self):
-		assert str(self.param) == 'Output: Number, n'
+		assert str(self.param) == 'n - Number'

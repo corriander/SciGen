@@ -65,6 +65,7 @@ class TestMultiParam:
 		string.append('\n')
 		string.append('Inputs')
 		string.append('------')
+		string.append('')
 		string.append(str(iparam_1))
 		string.append('')
 		string.append(str(iparam_2))

@@ -173,13 +173,7 @@ class SciInput(SciParam):
 	def __init__(self, name, var):
 		SciParam.__init__(self, name, var)
 	
-	def __str__(self):
-		return "Input: %s, %s" % (self.name, self.var)
-
 class SciOutput(SciParam):
 	"""Scilab function output parameter encapsulation."""
 	def __init__(self, name, var):
 		SciParam.__init__(self, name, var)
-	
-	def __str__(self):
-		return "Output: %s, %s" %(self.name, self.var)
