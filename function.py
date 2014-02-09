@@ -54,10 +54,11 @@ class SciParam(object):
 	  - Variable
 	
 	"""
-	def __init__(self, name, var, description=None):
+	def __init__(self, name, var, description=None, scitype=None):
 		self._name = name
 		self._var = var
 		self._description = description
+		self._scitype = scitype
 	
 	def __repr__(self):
 		return "%s('%s', '%s')" % (
@@ -85,6 +86,11 @@ class SciParam(object):
 	def description(self):
 		"""Scilab function parameter description."""
 		return self._description
+
+	@property
+	def scitype(self):
+		"""Scilab data type as reported by Scilab's `typeof()`"""
+		return self._scitype
 
 class SciInput(SciParam):
 	"""Scilab function input parameter encapsulation."""
