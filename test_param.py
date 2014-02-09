@@ -40,6 +40,9 @@ class TestParam:
 		string.append("Size        : [1, 1]")
 		string = "\n".join(string)
 		assert str(self.param) == string
+	
+	def test_partial__str__(self):
+		assert str(self.partial_param) == "s - String"
 
 class TestInput:
 
