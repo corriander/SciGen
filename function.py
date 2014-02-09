@@ -53,12 +53,21 @@ class SciParamSet(list):
 	Although this might be considered an abuse of the language there
 	are valid reasons to use parameterless functions (especially when
 	trying to emulate OOP principles). It therefore makes sense for an
-	empty set of parameters to be possible."""
-
+	empty set of parameters to be possible.
+	
+	"""
 	def __init__(self, *args):
 		for item in args:
 			self.append(item)
-
+	
+	def __getitem__(self, key):
+		if isinstance(key, int):
+			return tuple(self)[key]
+		for item in self:
+			if item.var is key:
+				return item
+		raise KeyError, "Variable '%s' not in set." % key
+	
 	def stat(self):
 		"""Return variables in different classes of parameter."""
 		dd = defaultdict(list)

@@ -5,10 +5,13 @@ iparam_1 = SciInput('Dimension 1', 'x')
 iparam_2 = SciInput('Dimension 2', 'y')
 oparam = SciOutput('Length', 'l')
 
-def test_init_empty():
+class TestEmpty:
+	
 	paramset = SciParamSet()
-	assert not paramset # Pythonic, not explicit. Test boolean value.
 
+	def test_init_empty(self):
+		assert not self.paramset # Pythonic, not explicit. Test boolean value.
+	
 class TestOneParam:
 	
 	paramset = SciParamSet(param)
@@ -18,6 +21,9 @@ class TestOneParam:
 
 	def test_var(self):
 		assert self.paramset[0].var == 'p'
+	
+	def test___getitem__(self):
+		assert self.paramset['p'] == param
 
 class TestMultiParam:
 
