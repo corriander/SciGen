@@ -16,7 +16,41 @@ test_fun = SciFun(
 		test_credit,
 		test_body
 		)
+printed_function = """function [l] = test_function(x, y)
+// This is a function
+// 
+// Usage
+// -----
+// 
+// [l] = test_function(x, y)
+// 
+// Output
+// ------
+// 
+// l - Length
+// 
+// Input
+// -----
+// 
+// x - Dimension 1
+// 
+// y - Dimension 2
+// 
+// Description
+// -----------
+// 
+// This function does things.
+// 
+// And Stuff.
+// 
+// Credits
+// -------
+// 
+// Copyright (C) 2013 A. Person
 
+l = sqrt(x^2 + y^2)
+
+endfunction"""
 def test_name():
 	assert test_fun.name == 'test_function'
 
@@ -51,3 +85,12 @@ def test_declaration():
 
 def test_body():
 	assert test_fun.body == 'l = sqrt(x^2 + y^2)'
+
+def test___str__():
+	ls_expected = printed_function.split('\n')
+	ls = str(test_fun).split('\n')
+	i = -1
+	for line in ls_expected:
+		i += 1
+		print i
+		assert line == ls[i]

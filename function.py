@@ -45,8 +45,35 @@ class SciFun(object):
 		return "SciFun('%s')" % self.name
 
 	def __str__(self):
-		string = []
-		string.append("SciFun Object: %s" % self.name)
+		doctxt = [self.summary]
+		doctxt.append('')
+		if self.usage:
+			doctxt.append('Usage')
+			doctxt.append('')
+			doctxt.append(self.usage)
+			doctxt.append('')
+			doctxt.append('')
+		doctxt.append(self.parameters)
+		if self.description:
+			doctxt.append('Description')
+			doctxt.append('----------')
+			doctxt.append(self.description)
+			doctxt.append('')
+			doctxt.append('')
+		if self.credit:
+			doctxt.append('Credits')
+			doctxt.append('-------')
+			doctxt.append('')
+			doctxt.append(self.credit)
+			doctxt.append('')
+			doctxt.append('')
+		doctxt = ["// %s" % line for line in doctxt]
+		
+		string = [self.declaration]
+		string.extend(doctxt)
+		string.append(self.body)
+		string.append('')
+		string.append('endfunction')
 		return "\n".join(string)
 
 	def _generate_declaration(self):
